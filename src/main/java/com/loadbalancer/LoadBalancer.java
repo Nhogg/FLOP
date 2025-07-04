@@ -14,17 +14,30 @@ public class LoadBalancer {
         // Needs to awaken both threads
     }
 
-    private ConcurrentHashMap<BackendServer, Boolean> checkHealth() {
-        // Should call healthChecker.checkHealth() to retrieve the health status of each server
+    private void checkHealth() {
+        // Should call healthChecker.checkOnce() to retrieve the health status of each server
         // Should update serverList with the health status
-        //
+        if (healthChecker != null) {
+            healthChecker.checkOnce();
+        }
     }
 
-    private void route(Request request) {
-        // Should do other operations to route the request
+
+    private Boolean route(Request request) {
+
+
+        return routeToHealthyServer(request);
     }
 
 
 
 
 }
+
+// Removed Implementations
+// Removed due to concerns about thread safety and concurrency issues
+//    private ConcurrentHashMap<BackendServer, Boolean> checkHealth() {
+//        // Should call healthChecker.checkHealth() to retrieve the health status of each server
+//        // Should update serverList with the health status
+//        //
+//    }

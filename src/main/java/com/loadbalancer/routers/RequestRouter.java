@@ -1,4 +1,7 @@
 package com.loadbalancer.routers;
 
-public class RequestRouter {
+public interface RequestRouter {
+    BackendServer chooseServer(List<BackendServer> healthyServers);
+
+
 }

@@ -19,5 +19,16 @@ public class HealthChecker {
         }
     }
 
+    public void checkOnce() {
+        // Called on initial startup
+        // Should call healthChecker.checkHealth() to retrieve the health status of each server
+        // Should update serverList with the health status
+        // Should route the request to a healthy server
+        for (BackendServer server : serverList.keySet()) {
+            boolean isHealthy = ping(server);
+            serverList.put(server, isHealthy);
+        }
+    }
+
 
 }
